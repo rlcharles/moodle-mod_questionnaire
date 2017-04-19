@@ -531,7 +531,7 @@ function xmldb_questionnaire_upgrade($oldversion=0) {
     }
 
     // Ensuring database matches XML state for some known anomalies.
-    if ($oldversion < 2016020204) {
+    if ($oldversion < 2016071101) {
         // Ensure the feedbackscores field can be null (CONTRIB-6445).
         $table = new xmldb_table('questionnaire_survey');
         $field = new xmldb_field('feedbackscores', XMLDB_TYPE_INTEGER, '1', null, null, null, '0');
@@ -548,7 +548,7 @@ function xmldb_questionnaire_upgrade($oldversion=0) {
         $dbman->change_field_precision($table, $field);
 
         // Questionnaire savepoint reached.
-         upgrade_mod_savepoint(true, 2016020204, 'questionnaire');
+         upgrade_mod_savepoint(true, 2016071101, 'questionnaire');
     }
 
     return $result;
